@@ -29,6 +29,8 @@ function Dashboard() {
     let [isProduction,setIsProduction] = useState(false);
     let [isBotOn,setIsBotOn] = useState(false);
     let [infoData,setInfoData] = useState([]);
+    let [botInfo,setBotInfo] = useState([]);
+
     useEffect(()=>{
         setInfoData([
             {
@@ -67,6 +69,25 @@ function Dashboard() {
                 valueType: 'address'
             }
         ]) 
+
+        setBotInfo([
+            {
+                content: 'Bot Started @ 11:00pm',
+                contentType: 'message'
+            },
+            {
+                content: [
+                    'Transaction Hash:  0x516516519516518461651989549',
+                    'Token Address:  0x516516519516518461651989549',
+                    'Gas Price:  500000'
+                ],
+                contentType: 'transaction'
+            },
+            {
+                content: 'Bot Ended @ 11:00pm',
+                contentType: 'message'
+            }
+        ])
     },[])
 
   return (
@@ -140,6 +161,35 @@ function Dashboard() {
                 
                 
 
+            </div>
+            <div className="bot-info-container">
+                    <h1 className='bot-info-container-title'>Bot Result</h1>
+                    {
+                        botInfo.map((info, id)=>{
+                            if(info.contentType === 'message'){
+                                return <div key={id} className="bot-info-content-message">
+                                {info.content}
+                            </div>
+                                
+                                
+                            }else if(info.contentType === 'transaction'){
+                                return <div key={id} className="bot-info-content-transaction">
+                                <p>Transaction Found</p>
+                                {
+                                    info.content.map((detail,id)=>{
+                                        return<div key={id}>
+                                        {detail}
+                                    </div>
+                                    })
+                                }
+                                
+                                
+                            </div>
+
+                            }
+                        })
+                    }
+                   
             </div>
        </div>
    </div>

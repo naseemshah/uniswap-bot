@@ -223,6 +223,7 @@ html,body{
   height: 100vh;
   overflow-y: auto;
 
+
 }
 .dash-title-container{
   max-width: 100%;
@@ -312,6 +313,75 @@ html,body{
 .dash-info-item-value-eth span{
   font-size: 20px;
 }
+
+.bot-info-container{
+  margin-left: 20px;
+  margin-right: 20px;
+  /* background-color: #0092FF; */
+  display: flex;
+  flex-direction: column;
+}
+
+.bot-info-content-message{
+  min-height: 87px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.12);
+  border-radius: 9px;
+  width: 100%;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.bot-info-content-transaction{
+  min-height: 87px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.12);
+  border-radius: 9px;
+  width: 100%;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  color: #000000;
+  display: flex;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box; 
+  flex-direction: column;
+}
+.bot-info-content-transaction div:nth-child(odd){
+  background: rgba(196, 196, 196, 0.14);
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  color: #000000;
+  min-width: 50%;
+  max-width: 664px;
+  padding: 10px 10px 10px 20px;
+}
+
+.bot-info-content-transaction div:nth-child(even){
+  background: rgba(161, 161, 161, 0.48);
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  color: #000000;
+  min-width: 50%;
+  max-width: 664px;
+  padding: 10px 10px 10px 20px;
+
+}
+
 @media screen and (max-width: 1125px){
 
   .login-signup-left-section-title{
