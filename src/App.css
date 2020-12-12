@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,800;1,200;1,300;1,400;1,500;1,600&display=swap');
+html,body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-signup{
+  display: flex;
+  background-color: aquamarine;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login-signup-left-section{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  width: 50%;
+  flex-direction: column;
+  padding-left: 50px;
+  background-image: url('assets/img/left-section-bg.png');
+  background-position: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+
+}
+
+.login-signup-logo{
+  width: 242px; 
+  /* background-color: aquamarine; */
+}
+
+.login-signup-logo img{
+  width: 100%; 
+}
+
+.login-signup-left-section-title{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 108px;
+}
+
+.login-signup-right-section{
+  background-color: white;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.login-signup-right-section-title{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 108px;
+  margin: 0;
+  padding: 0;
+}
+.input-row{
+  display: flex;
+  flex-direction: column;
+}
+
+.login-signup-form{
+  width: 80%;
+}
+
+.login-signup-form input{
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 3px solid #C0BEBE;
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  font-size: 25px;
+  padding-left: 10px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+}
+
+.login-signup-form label{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 37px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.login-signup-form button{
+  width: 100%;
+  background: #0092FF;
+  border-radius: 10px;
+  height: 50px;
+  border: none;
+  outline: none;
+  margin-top: 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 52px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.login-signup-prompt{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 37px;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.42);
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+.login-signup-prompt a{
+  text-decoration: none;
+  margin-left: 5px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 37px;
+  color: #0092FF;
+}
+
+
+@media screen and (max-width: 1125px){
+
+  .login-signup-left-section-title{
+    font-size: 45px;
+    line-height: 50px;
+  }
+
+  .login-signup-right-section-title{
+    font-size: 40px;
+    line-height: 60px;
+    margin-bottom: 20px;
+  }
+
+  .login-signup-form label{
+    font-size: 20px;
+    line-height: 25px;
+    margin-top: 20px;
+  }
+
+  .login-signup-prompt,.login-signup-prompt a{
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .login-signup-form button{
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 850px){
+  .login-signup{
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  .login-signup-logo{width: 150px;}
+  .login-signup-left-section{
+    width: 100%;
+    padding-left: unset;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-signup-left-section-title{
+    text-align: center;
+    font-size: 30px;
+    line-height: 35px;
+  }
+  /* .login-signup-left-section-title br{
+    display: none;
+    word-break: unset;
+    margin-left: 5px;
+  } */
+  .login-signup-right-section{
+    width: 100%;
+    height: 100%;
+  }
+  .login-signup-right-section-title{
+    margin-top: 30px;
+    line-height: 35px;
+    font-size: 35px;
+    margin-bottom: 0px;
+  }
+  .login-signup-logo{
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 640px){
+  .login-signup-left-section{
+    background: #47a4eb;
+
+  }
+}
+
+@media screen and (max-width: 460px){
+  .login-signup-right-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-signup-right-section-title{
+    margin-top: 20px;
+    font-size: 30px;
+    line-height: 30px;
+    margin-bottom: 0;
+  }
+  .login-signup-left-section-title{
+    margin-top: 20px;
+    font-size: 30px;
+    line-height: 35px;
+    margin-bottom: 20px;
+  }
+}
