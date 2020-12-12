@@ -1,6 +1,7 @@
 import './App.css';
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import Dashboard from './components/Dashboard'
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,8 +17,8 @@ function App() {
 
         
         <Switch>
-          <Route path="/about">
-            {/* <About /> */}
+          <Route path="/dashboard">
+            <Dashboard />
           </Route>
           <Route path="/sign-up">
             <SignUp />
