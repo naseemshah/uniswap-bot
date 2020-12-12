@@ -5,20 +5,24 @@ import DashIcon from '../assets/img/dash-icon.svg'
 import logoutIcon from '../assets/img/logoutIcon.svg'
 import accountIcon from '../assets/img/account-settings-icon.svg'
 
-let Sidebar = () => {
+let Sidebar = (props) => {
     return(
         <div>
             <aside className="dash-sidebar">
             <img src={logo} className="dash-logo" alt="Logo"/>
                 <div className="dash-nav-list">
-                    <Link to="#" className="react-router-link-reset">
-                        <div className='nav-list-item nav-list-item-active'>
+                    <Link to="/dashboard" className="react-router-link-reset">
+                        <div className={
+                            props.active==="dashboard" ? 'nav-list-item nav-list-item-active' : 'nav-list-item'
+                        }>
                             <img src={DashIcon} alt=""/>
                             <p>Dashboard</p>
                         </div>
                     </Link>
-                    <Link to="#" className="react-router-link-reset">
-                        <div className='nav-list-item'>
+                    <Link to="/account-settings" className="react-router-link-reset">
+                        <div className={
+                            props.active==="accountSettings" ? 'nav-list-item nav-list-item-active' : 'nav-list-item'
+                        }>
                             <img src={accountIcon} alt=""/>
                             <p>Account Settings</p>
                         </div>

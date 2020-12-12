@@ -92,7 +92,7 @@ function Dashboard() {
 
   return (
    <div className="dash-container">
-       <Sidebar />
+       <Sidebar active="dashboard"/>
        <div className="dash-content">
            <div className="dash-title-container">
                 <h1 className="dash-title">Dashboard</h1>
@@ -148,7 +148,7 @@ function Dashboard() {
                                 {info.title}
                                 </p>
                                 <p className="dash-info-item-value-address">
-                                    {info.value.substring(0,5)+ '...' + info.value.substring(info.value.length-3,info.value.length)}
+                                    {info.value.substring(0,5)+'...'+ info.value.substring(info.value.length-3,info.value.length)}
                                 </p>
                             </div>
 

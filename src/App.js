@@ -9,6 +9,8 @@ import {
   Link
 } from "react-router-dom";
 
+import AccountSettings from './components/AccountSettings'
+
 function App() {
   return (
     <Router>
@@ -17,6 +19,9 @@ function App() {
 
         
         <Switch>
+          <Route path="/account-settings">
+            <AccountSettings />
+          </Route>
           <Route path="/dashboard">
             <Dashboard />
           </Route>
