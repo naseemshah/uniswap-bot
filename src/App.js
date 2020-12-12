@@ -6,7 +6,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 import AccountSettings from './components/AccountSettings'
@@ -15,9 +14,6 @@ function App() {
   return (
     <Router>
       <div>
-        
-
-        
         <Switch>
           <Route path="/account-settings">
             <AccountSettings />
