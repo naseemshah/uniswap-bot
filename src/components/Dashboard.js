@@ -39,96 +39,95 @@ function Dashboard() {
         try {
 
        
-    //     const resource="settings"
-    //     let response=await fetch(`http://localhost:5000/${resource}`,
-    //     {
-    //      method: 'GET',         
-    //      headers: {
-    //        'Content-Type': 'application/json',
-    //        Authorization: 'Bearer ' + context.token
-    //      }
-    //    })
-    //    if (response.status !== 200 && response.status !== 201) {            
-    //        return
-    //      }          
-    //      const resData =await   response.json()
-    // if(resData.count==1)
-    if(1){
-            // const {  PRODUCTION ,ETHER_TRADE_AMOUNT ,PERCENT_OF_POOL_TO_TRADE ,GASLIMIT ,GASPRICE ,SLIPPAGE_TOLERANCE ,
-            //     ACCOUNT ,
+        const resource="settings"
+        let response=await fetch(`http://localhost:5000/${resource}`,
+        {
+         method: 'GET',         
+         headers: {
+           'Content-Type': 'application/json',
+           Authorization: 'Bearer ' + context.token
+         }
+       })
+       if (response.status !== 200 && response.status !== 201) {            
+           return
+         }          
+         const resData =await   response.json()
+    if(resData.count==1){
+            const {  PRODUCTION ,ETHER_TRADE_AMOUNT ,PERCENT_OF_POOL_TO_TRADE ,GASLIMIT ,GASPRICE ,SLIPPAGE_TOLERANCE ,
+                ACCOUNT ,
                    
-            //     TOKENB_ADDRESS ,
-            //     ROUTERV2ADDRESS}=resData.Settings[0];
+                TOKENB_ADDRESS ,
+                ROUTERV2ADDRESS}=resData.Settings[0];
 
                 setInfoData([
                     { title: 'Trade Amount',
-                    // value: ETHER_TRADE_AMOUNT,
-                    value: 5165,
+                    value: ETHER_TRADE_AMOUNT,
+                    // value: 5165,
                     valueType: 'eth'},
 
                     {
                         title: 'Percent of Pool amount Trade',
-                        // value: PERCENT_OF_POOL_TO_TRADE,
-                        value: 0.1,
+                        value: PERCENT_OF_POOL_TO_TRADE,
+                        // value: 0.1,
                         valueType: 'percent'
                     },
                     {
                         title: 'Gas Limit',
-                        // value: GASLIMIT,
-                        value: 1000,
+                        value: GASLIMIT,
+                        // value: 1000,
                         valueType: 'eth'
                     },
                     {
                         title: 'Gas Price',
-                        // value: GASPRICE,
-                        value: 516,
+                        value: GASPRICE,
+                        // value: 516,
                         valueType: 'eth'
                     },
                     {
                         title: 'Slippage Tolerance',
-                        // value: SLIPPAGE_TOLERANCE,
-                        value: 0.1,
+                        value: SLIPPAGE_TOLERANCE,
+                        // value: 0.1,
                         valueType: 'percent'
                     },
                     {
                         title: 'Receiving Address',
-                        // value: ACCOUNT,
-                        value: 'sjnaklsjndlkasml;dmawsl',
+                        value: ACCOUNT,
+                        // value: 'sjnaklsjndlkasml;dmawsl',
                         valueType: 'address'
                     },
                     {
                         title: 'Token Address',
-                        // value: TOKENB_ADDRESS,
-                        value: 'sjnaklsjndlkasml;dmawsl',
+                        value: TOKENB_ADDRESS,
+                        // value: 'sjnaklsjndlkasml;dmawsl',
                         valueType: 'address'
                     },
                     {
                         title: 'Uniswap Address',
-                        // value: ROUTERV2ADDRESS,
-                        value: 'sjnaklsjndlkasml;dmawsl',
+                        value: ROUTERV2ADDRESS,
+                        // value: 'sjnaklsjndlkasml;dmawsl',
                         valueType: 'address'
                     }
                 ])    
           
             
-            // setIsProduction(PRODUCTION=="1") 
-            setIsProduction(true) 
+            setIsProduction(PRODUCTION=="1") 
+            // setIsProduction(true) 
             const resource="botcontrol"
-        //     let response1=await fetch(`http://localhost:5000/${resource}`,
-        //     {
-        //      method: 'GET',         
-        //      headers: {
-        //        'Content-Type': 'application/json',
-        //        Authorization: 'Bearer ' + context.token
-        //      }
-        //    })
-        //    if (response1.status !== 200 && response1.status !== 201) {            
-        //        return
-        //      }          
-            //  const resData1 =await response1.json()
-            //  setIsBotOn(resData1.start)
-            //  console.log(resData1)
-             setIsBotOn(true)
+            let response1=await fetch(`http://localhost:5000/${resource}`,
+            {
+             method: 'GET',         
+             headers: {
+               'Content-Type': 'application/json',
+               Authorization: 'Bearer ' + context.token
+             }
+           })
+           if (response1.status !== 200 && response1.status !== 201) {            
+               return
+             }          
+             const resData1 =await response1.json()
+             setIsBotOn(resData1.start)
+             console.log(resData1)
+            //  setIsBotOn(true)
 
              
     
