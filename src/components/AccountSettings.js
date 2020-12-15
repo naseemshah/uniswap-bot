@@ -168,7 +168,7 @@ function AccountSettings() {
                 <h1 className="dash-title">Account Settings</h1>
            </div>
            <div className="account-settings-toggle-item">
-               {infuraKey}
+          
                         <p>Production</p>
                         <ToggleButton 
                             value={isProduction}
@@ -225,7 +225,7 @@ function AccountSettings() {
                 </div>
             </div>
             <div className="account-settings-save">
-                <button>Save</button>
+                <button type="submit">Save</button>
             </div>
             </form>
         </div>          
