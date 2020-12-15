@@ -1,4 +1,7 @@
-import React, {useState, useEffect} from 'react'
+ 
+import   {useState, useEffect,useContext} from 'react'
+ 
+import AuthContext from '../context/auth-context';
 import '../App.css';
 import Sidebar from './Sidebar'
 import ToggleButton from 'react-toggle-button'
@@ -26,49 +29,114 @@ function abbreviateNumber(value) {
 
 
 function Dashboard() {
-    let [isProduction,setIsProduction] = useState(false);
+    const fetchData=async()=>{
+        try {
+
+       
+        const resource="settings"
+        let response=await fetch(`http://localhost:5000/${resource}`,
+        {
+         method: 'GET',         
+         headers: {
+           'Content-Type': 'application/json',
+           Authorization: 'Bearer ' + context.token
+         }
+       })
+       if (response.status !== 200 && response.status !== 201) {            
+           return
+         }          
+         const resData =await   response.json()
+         if(resData.count==1){
+            const {  PRODUCTION ,ETHER_TRADE_AMOUNT ,PERCENT_OF_POOL_TO_TRADE ,GASLIMIT ,GASPRICE ,SLIPPAGE_TOLERANCE ,
+                ACCOUNT ,
+                   
+                TOKENB_ADDRESS ,
+                ROUTERV2ADDRESS}=resData.Settings[0];
+
+                setInfoData([
+                    { title: 'Trade Amount',
+                    value: ETHER_TRADE_AMOUNT,
+                    valueType: 'eth'},
+
+                    {
+                        title: 'Percent of Pool amount Trade',
+                        value: PERCENT_OF_POOL_TO_TRADE,
+                        valueType: 'percent'
+                    },
+                    {
+                        title: 'Gas Limit',
+                        value: GASLIMIT,
+                        valueType: 'eth'
+                    },
+                    {
+                        title: 'Gas Price',
+                        value: GASPRICE,
+                        valueType: 'eth'
+                    },
+                    {
+                        title: 'Slippage Tolerance',
+                        value: SLIPPAGE_TOLERANCE,
+                        valueType: 'percent'
+                    },
+                    {
+                        title: 'Receiving Address',
+                        value: ACCOUNT,
+                        valueType: 'address'
+                    },
+                    {
+                        title: 'Token Address',
+                        value: TOKENB_ADDRESS,
+                        valueType: 'address'
+                    },
+                    {
+                        title: 'Uniswap Address',
+                        value: ROUTERV2ADDRESS,
+                        valueType: 'address'
+                    }
+                ])    
+          
+            
+            setIsProduction(PRODUCTION=="1") 
+            const resource="botcontrol"
+            let response1=await fetch(`http://localhost:5000/${resource}`,
+            {
+             method: 'GET',         
+             headers: {
+               'Content-Type': 'application/json',
+               Authorization: 'Bearer ' + context.token
+             }
+           })
+           if (response1.status !== 200 && response1.status !== 201) {            
+               return
+             }          
+             const resData1 =await response1.json()
+             setIsBotOn(resData1.start)
+             console.log(resData1)
+             
+    
+                   
+        
+         }
+
+        }
+        catch(e){
+            console.log(e.message)
+        }
+    }
+   
+    const context=useContext (AuthContext)
+    const [isProduction,setIsProduction] = useState(false);   
+    
     let [isBotOn,setIsBotOn] = useState(false);
     let [infoData,setInfoData] = useState([]);
     let [botInfo,setBotInfo] = useState([]);
-
+    
+    const handleToggle=()=>{
+        setIsProduction(!isProduction)
+    }
     useEffect(()=>{
-        setInfoData([
-            {
-                title: 'Percent of Pool amount Trade',
-                value: 78,
-                valueType: 'percent'
-            },
-            {
-                title: 'Gas Limit',
-                value: 100000000,
-                valueType: 'eth'
-            },
-            {
-                title: 'Gas Price',
-                value: 100000000,
-                valueType: 'eth'
-            },
-            {
-                title: 'Slippage Tolerance',
-                value: 1.0,
-                valueType: 'percent'
-            },
-            {
-                title: 'Receiving Address',
-                value: '0x93a109f93459E5D1623eEE1c57F6453CBDB1D5b9',
-                valueType: 'address'
-            },
-            {
-                title: 'Token Address',
-                value: '0x93a109f93459E5D1623eEE1c57F6453CBDB1D5b9',
-                valueType: 'address'
-            },
-            {
-                title: 'Uniswap Address',
-                value: '0x93a109f93459E5D1623eEE1c57F6453CBDB1D5b9',
-                valueType: 'address'
-            }
-        ]) 
+        fetchData()
+       
 
         setBotInfo([
             {
@@ -89,6 +157,30 @@ function Dashboard() {
             }
         ])
     },[])
+    const handleBotToggle=async ()=>{
+
+        const resource="botcontrol"
+        
+        setIsBotOn(!isBotOn)
+        let requestBody={start:!isBotOn};
+         
+            let response1=await fetch(`http://localhost:5000/${resource}`,
+            {
+             method: 'POST',  
+             body: JSON.stringify(requestBody),       
+             headers: {
+               'Content-Type': 'application/json',
+               Authorization: 'Bearer ' + context.token
+             }
+           })
+           if (response1.status !== 200 && response1.status !== 201) {  
+                      
+               return
+             }          
+             const resData1 =await response1.json()
+             
+        
+    }
 
   return (
    <div className="dash-container">
@@ -101,18 +193,14 @@ function Dashboard() {
                         <p>Production</p>
                         <ToggleButton 
                             value={isProduction}
-                            onToggle={()=>{
-                                setIsProduction(!isProduction)
-                            }}
+                            
                         />
                     </div>
                     <div className="dash-toggle-item">
                         <p>Bot</p>
                         <ToggleButton 
                             value={isBotOn}
-                            onToggle={()=>{
-                                setIsBotOn(!isBotOn)
-                            }}
+                            onToggle={handleBotToggle}
                         />
                     </div>
                 </div>

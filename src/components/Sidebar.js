@@ -4,8 +4,11 @@ import logo from '../logo.svg'
 import DashIcon from '../assets/img/dash-icon.svg'
 import logoutIcon from '../assets/img/logoutIcon.svg'
 import accountIcon from '../assets/img/account-settings-icon.svg'
-
+import AuthContext from '../context/auth-context';
+import {   useContext} from 'react';
 let Sidebar = (props) => {
+
+    const context=useContext (AuthContext)
     return(
         <div>
             <aside className="dash-sidebar">
@@ -19,7 +22,7 @@ let Sidebar = (props) => {
                             <p>Dashboard</p>
                         </div>
                     </Link>
-                    <Link to="/account-settings" className="react-router-link-reset">
+                    <Link to="/accountsettings" className="react-router-link-reset">
                         <div className={
                             props.active==="accountSettings" ? 'nav-list-item nav-list-item-active' : 'nav-list-item'
                         }>
@@ -29,7 +32,7 @@ let Sidebar = (props) => {
                     </Link>
                 </div>
                 <div className="dash-nav-list">
-                    <Link to="#" className="react-router-link-reset">
+                    <Link to="#" className="react-router-link-reset" onClick={context.logout} >
                         <div className='nav-logout'>
                             <img src={logoutIcon} alt=""/>
                             <p>Logout</p>
