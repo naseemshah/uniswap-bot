@@ -1,10 +1,15 @@
 import   {useState, useEffect,useContext} from 'react'
- 
+import {Link} from 'react-router-dom'
 import AuthContext from '../context/auth-context';
 import '../App.css';
 import Sidebar from './Sidebar'
 import ToggleButton from 'react-toggle-button'
-
+import logo from '../logo.svg'
+import DashIcon from '../assets/img/dash-icon.svg'
+import logoutIcon from '../assets/img/logoutIcon.svg'
+import ham from '../assets/img/ham.svg'
+import accountIcon from '../assets/img/account-settings-icon.svg'
+import closeIcon from '../assets/img/x.svg'
 
 
 
@@ -23,8 +28,30 @@ function AccountSettings() {
     const [tokenBAddress,setTokenBAddress]=useState("")
     const [routerV2Address,setRouterV2Address]=useState("")
     const [privateKey,setPrivateKey]=useState("")
+    let [isSidebarOn,setSidebarOn] = useState(true)
+    let [isNavOpen, setIsNavOpen]=useState(false)
+    let [showSaveConfirmationDialogue,setShowSaveConfirmationDialogue] = useState(false)
+    let [isSaveDailogueConfirmed,setIsSaveDailogueConfirmed] = useState(undefined);
+    window.addEventListener('resize',()=>{
+        if(window.innerWidth<800){
+            setSidebarOn(false)
+        }else{
+            
+            setSidebarOn(true)
+        }
+    })
     
-  
+    let handleSaveBtn = () =>{
+        setShowSaveConfirmationDialogue(true)
+                
+    }
+    let handleYesConfirmation = () => {
+        let form = document.getElementById('saveSettingsForm')
+        setIsSaveDailogueConfirmed(true)
+            console.log("yes ")
+            form.submit()
+
+    }
     const handleToggle=()=>{
         setIsProduction(!isProduction)
     }
@@ -64,6 +91,12 @@ function AccountSettings() {
     }
     
     useEffect(async ()=>{
+        if(window.innerWidth<800){
+            setSidebarOn(false)
+        }else{
+            
+            setSidebarOn(true)
+        }
 
         const resource="settings"
         let response=await fetch(`http://localhost:5000/${resource}`,
@@ -113,6 +146,10 @@ function AccountSettings() {
     }
     const  submitHandler = async event => {
         event.preventDefault();
+        if(isSaveDailogueConfirmed===false){ 
+            setIsSaveDailogueConfirmed(undefined)
+            return 
+        }
         returnUndefined(gasLimit)
         const PRODUCTION  =isProduction ? "1" :"0"
         const  ETHER_TRADE_AMOUNT   =returnUndefined(etherTradeAmount   )
@@ -157,13 +194,56 @@ function AccountSettings() {
            
           const resData =await   response.json()
       
-     
+        
       };
 
   return (
    <div className="dash-container">
-       <Sidebar active="accountSettings"/>
+       {showSaveConfirmationDialogue &&
+            <div className="showConfirmation">
+                <p>Are you sure?</p>
+                <div>
+                    <button onClick={handleYesConfirmation}>Yes</button>
+                    <button onClick={()=>{setShowSaveConfirmationDialogue(false); setIsSaveDailogueConfirmed(false)}}>No</button>
+                </div>
+            </div>
+       }
+       { isSidebarOn && <Sidebar active="accountSettings"/>}
        <div className="dash-content">
+       { !isSidebarOn && 
+                    <div className="navbar-container">
+                        <div className="navbar">
+                            <img src={logo} className="dash-logo" alt="Logo"/>
+                            <div onClick={()=>{setIsNavOpen(!isNavOpen)}}>
+                            {isNavOpen ? <img src={closeIcon} alt=""/> : <img src={ham} alt=""/>}
+                            </div>
+                        </div>
+                        {isNavOpen && <div>
+                            <div className="dash-nav-list">
+                                <Link to="/dashboard" className="react-router-link-reset">
+                                    <div className='nav-list-item'>
+                                        <img src={DashIcon} alt=""/>
+                                        <p>Dashboard</p>
+                                    </div>
+                                </Link>
+                                <Link to="/accountsettings" className="react-router-link-reset">
+                                    <div className='nav-list-item  nav-list-item-active'>
+                                        <img src={accountIcon} alt=""/>
+                                        <p>Account Settings</p>
+                                    </div>
+                                </Link>
+                            </div>
+                            <div className="dash-nav-list">
+                                <Link to="#" className="react-router-link-reset" onClick={context.logout} >
+                                    <div className='nav-logout'>
+                                        <img src={logoutIcon} alt=""/>
+                                        <p>Logout</p>
+                                    </div>
+                                </Link>
+                            </div>    
+                        </div>}
+                       </div>
+            }
            <div className="dash-title-container">
                 <h1 className="dash-title">Account Settings</h1>
            </div>
@@ -175,7 +255,7 @@ function AccountSettings() {
                             onToggle={ handleToggle}
                         />
             </div>
-           <form onSubmit={submitHandler}>
+           <form id="saveSettingsForm" onSubmit={submitHandler}>
 
            
             <div className="settings-form-container">
@@ -225,7 +305,7 @@ function AccountSettings() {
                 </div>
             </div>
             <div className="account-settings-save">
-                <button type="submit">Save</button>
+                <button onClick={handleSaveBtn} >Save</button>
             </div>
             </form>
         </div>          

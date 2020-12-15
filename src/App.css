@@ -6,6 +6,39 @@ html,body{
   font-family: 'Poppins', sans-serif;
 }
 
+.navbar-container{
+  width: 100%;
+  background-color: #8FC4FF;
+  box-sizing: border-box;
+}
+
+.navbar{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+
+.navbar .dash-logo{
+  width: 150px;
+}
+
+.production-status-on{
+  background-color: rgba(0, 255, 0, 0.199);
+  color: #000000;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+
+}
+
+.production-status-off{
+
+}
+
 .login-signup{
   display: flex;
   background-color: aquamarine;
@@ -249,6 +282,8 @@ html,body{
 .dash-toggle-item p{
   margin-right: 5px;
   display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .dash-info{
@@ -356,6 +391,7 @@ html,body{
   margin-bottom: 20px;
   box-sizing: border-box; 
   flex-direction: column;
+  word-wrap: break-word;
 }
 .bot-info-content-transaction div:nth-child(odd){
   background: rgba(196, 196, 196, 0.14);
@@ -417,6 +453,11 @@ html,body{
   width:100%;
   margin-top: 10px;
   outline: none;
+  font-size: 20px;
+  padding-left: 10px;
+  font-weight: 400;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 .account-settings-toggle-item{
   /* background-color: #47a4eb; */
@@ -458,6 +499,22 @@ html,body{
   cursor: pointer;
 }
 
+.showConfirmation{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 500px;
+  max-width: 80%;
+  min-height: 200px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 2px 5px 50px rgba(0, 0, 0, 0.576) ;
+  z-index: 10;
+}
+
 
 @media screen and (max-width: 1125px){
 
@@ -484,6 +541,16 @@ html,body{
   }
   .login-signup-form button{
     font-size: 20px;
+  }
+  .bot-info-content-message{
+    font-size: 20px;
+    min-width: 20px;
+   }
+  .bot-info-content-transaction{
+    font-size: 20px!important;
+  }
+  .bot-info-content-transaction div{
+    font-size: 20px!important;
   }
 }
 
@@ -532,10 +599,25 @@ html,body{
   }
 }
 
+@media screen and (max-width: 740px){
+  .settings-form-container{
+    grid-template-columns: repeat(1, minmax(100%, 1fr));
+    
+  }
+  .settings-from-field{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+}
+
 @media screen and (max-width: 640px){
   .login-signup-left-section{
     background: #47a4eb;
 
+  }
+  .settings-from-field{
+    width: 88%;
   }
 }
 
@@ -557,5 +639,63 @@ html,body{
     line-height: 35px;
     margin-bottom: 20px;
   }
+  .settings-from-field{
+    width: 95%;
+  }
+  .dash-title{
+    font-size: 25px;
+  }
+  .account-settings-toggle-item p{
+    font-size: 20px;
+  }
+  .dash-title-container{
+    align-items: center!important;
+    justify-content: center!important;
+  }
+  .settings-from-field p{
+    font-size: 18px!important;
+  }
 }
 
+
+@media only screen and (max-width: 1400px) {
+  .dash-info{
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    
+  }
+  .dash-info-item{
+    width: 200px;
+  }
+  .dash-info-item-title{
+    font-size: 15px;
+  }
+  .dash-info-item-value-address{
+    font-size: 35px;
+    margin-top: 0px;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .dash-title-container{
+     flex-direction: column;
+  }
+} 
+
+@media only screen and (max-width: 477px) {
+  .dash-info{
+    grid-template-columns: repeat(1, minmax(100%, 1fr));
+    padding: 20px 0 20px 0;
+  }
+  .dash-info-item{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dash-info-item-title{
+    font-size: 15px;
+  }
+  .dash-info-item-value-address{
+    font-size: 50px;
+    margin-top: 0px;
+  }
+}
