@@ -39,8 +39,9 @@ function Login() {
         'Content-Type': 'application/json'
       }
     })
+    
     if (response.status !== 200 && response.status !== 201) {
-         
+    //Handle rejected or error responses  
         return
       }
        
